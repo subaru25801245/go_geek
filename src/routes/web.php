@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('post', PostController::class);
+Route::post('post/comment/store', [CommentController::class, 'store'])->name('comment.store');
 
 Route::get('/', function () {
     return view('welcome');
