@@ -13,8 +13,8 @@
                 </p>
                 <div class="flex w-full justify-center md:justify-start pb-24 lg:pb-0 fade-in ">
                     {{-- ボタン設定 --}}
-                    <button class="btnsetg">お問い合わせ</button>
-                    <button class="btnsetr">ご登録はこちら</button>
+                    <x-primary-button class="btnsetg">お問い合わせ</x-primary-button>
+                    <a href="{{route('register')}}"><x-primary-button class="btnsetr">ご登録はこちら</x-primary-button></a>
                 </div>
             </div>
             {{-- 右側 --}}
