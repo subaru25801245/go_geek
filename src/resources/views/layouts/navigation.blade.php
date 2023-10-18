@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('post.mycomment')" :active="request()->routeIs('post.mycomment')">
                         コメントした投稿
                     </x-nav-link>
+                    <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+                        ユーザー一覧
+                    </x-nav-link>
                 </div>
 
             <!-- Settings Dropdown -->
@@ -85,6 +88,9 @@
                 </x-responsive-nav-link>
                 <x-nav-link :href="route('post.mycomment')" :active="request()->routeIs('post.mycomment')">
                     コメントした投稿
+                </x-nav-link>
+                <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+                    ユーザー一覧
                 </x-nav-link>
             </div>
 
