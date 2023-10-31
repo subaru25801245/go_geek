@@ -27,5 +27,10 @@ class Post extends Model
         return $this->belongsToMany(User::class, 'favorites', 'post_id', 'user_id');
     }
 
+    public function hashtags()
+    {
+        return $this->belongsToMany(Hashtag::class, 'post_hashtag');
+    }
+
 
 }

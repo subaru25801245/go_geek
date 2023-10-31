@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Post;
 use App\Models\Test;
 use App\Models\Comment;
+use App\Models\Hashtag;
 use Illuminate\Http\Request;
 use Exception;
 
@@ -84,6 +85,21 @@ class PostController extends Controller
         $post->og_image = $ogData['og:image'] ?? null;
 
         $post->save();
+
+        preg_match_all('/#([\p{L}\p{N}_]+)/u', $post->body, $matches);
+
+        $tags = $matches[1];
+
+        // 抽出したハッシュタグをデータベースに保存
+        $tagIds = [];
+        foreach ($tags as $tagName) {
+            $tag = Hashtag::firstOrCreate(['name' => $tagName]);
+            $tagIds[] = $tag->id;
+        }
+
+        // 投稿とハッシュタグの関連付けを保存
+        $post->hashtags()->sync($tagIds);
+
         return redirect()->route('post.index')->with('message', '投稿を作成しました');
     }
 
@@ -149,6 +165,19 @@ class PostController extends Controller
         $post->og_image = $ogData['og:image'] ?? null;
 
         $post->save();
+
+        preg_match_all('/#([a-zA-Z0-9_]+)/', $post->body, $matches);
+        $tags = $matches[1];
+
+        // 抽出したハッシュタグをデータベースに保存
+        $tagIds = [];
+        foreach ($tags as $tagName) {
+            $tag = Hashtag::firstOrCreate(['name' => $tagName]);
+            $tagIds[] = $tag->id;
+        }
+
+        // 投稿とハッシュタグの関連付けを保存
+        $post->hashtags()->sync($tagIds);
 
         return redirect()->route('post.show', $post)->with('message', '投稿を更新しました');
     }
