@@ -1,0 +1,81 @@
+<x-app-layout>
+    <x-slot name="header">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                検索結果
+            </h2>
+            <form action="{{ route('post.search') }}" method="GET" class="flex items-center">
+                <input type="text" name="query" placeholder="投稿の検索" class="rounded-md px-2 py-1 h-8">
+                <button type="submit" class="ml-2 px-3 py-1 rounded-md bg-blue-500 text-white">検索</button>
+            </form>
+        </div>
+
+        <x-message :message="session('message')" />
+    </x-slot>
+
+    <div class="max-w-full mx-auto flex">
+        <div class="w-1/4 bg-gray-100 p-4 border-r">
+            @include('components.side-menu')
+        </div>
+        <div class="w-3/4 p-4 custom-bg">
+            @if($posts->isEmpty())
+                <div class="flex justify-center items-center min-h-screen bg-opacity-50 bg-black">
+                    <div class="p-4 bg-white rounded-lg shadow-md">
+                        <p class="text-2xl text-gray-800">該当企業がありません</p>
+                    </div>
+                </div>
+            @else
+                @foreach ($posts as $post)
+                    <a href="{{route('post.show', $post)}}" style="display: block; text-decoration: none;">
+                    <div class="mx-4 sm:p-8">
+                        <div class="mt-4">
+                            <div class="bg-white w-full rounded-2xl px-10 pt-2 pb-8 shadow-lg hover:shadow-2xl transition duration-500">
+                                <div class="mt-4">
+                                    <div class="flex items-center">
+                                        <div class="rounded-full w-12 h-12 overflow-hidden">
+                                            @if($post->user->avatar && $post->user->avatar != 'user_default.jpg')
+                                                <img src="{{asset('/storage/avatar/'.$post->user->avatar)}}" class="object-cover w-full h-full">
+                                            @elseif($post->user->github_avatar)
+                                                <img src="{{$post->user->github_avatar}}" class="object-cover w-full h-full">
+                                            @else
+                                                <img src="{{asset('/storage/avatar/user_default.jpg')}}" class="object-cover w-full h-full">
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <hr class="w-full">
+                                    <p class="mt-4 text-gray-600 py-4">{{$post->title}}</p>
+                                    <p class="mt-4 text-gray-600 py-4">{{Str::limit($post->body, 100, '...')}}</p>
+
+                                    @if($post->og_title)
+                                        <p class="mt-4 text-gray-600 py-4">{{$post->og_title}}</p>
+                                    @endif
+
+                                    @if($post->og_description)
+                                        <p class="mt-4 text-gray-600 py-4">{{$post->og_description}}</p>
+                                    @endif
+
+                                    @if($post->og_image)
+                                        <img src="{{$post->og_image}}" class="object-cover w-full h-full">
+                                    @endif
+
+                                    <hr class="w-full mb-2">
+                                    @if ($post->comments->count())
+                                        <span class="badge">
+                                            返信 {{$post->comments->count()}}件
+                                        </span>
+                                    @else
+                                        <span>コメントはまだありません。</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                @endforeach
+            @endif
+                <div class="mt-3">
+                    {{ $posts->links() }}
+                </div>
+        </div>
+    </div>
+</x-app-layout>

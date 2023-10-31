@@ -9,25 +9,13 @@
                         <img src="{{asset('logo/logo_neko.jpg')}}" style="max-height:60px;">
                     </a>
                 </div>
-
+            </div>
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.index')">
-                        HOME
-                    </x-nav-link>
-                    <x-nav-link :href="route('post.create')" :active="request()->routeIs('post.create')">
-                        新規作成
-                    </x-nav-link>
-                    <x-nav-link :href="route('post.mypost')" :active="request()->routeIs('post.mypost')">
-                        自分の投稿
-                    </x-nav-link>
-                    <x-nav-link :href="route('post.mycomment')" :active="request()->routeIs('post.mycomment')">
-                        コメントした投稿
-                    </x-nav-link>
-                    <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
-                        ユーザー一覧
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('post.index')" :active="request()->routeIs('post.index')" class="custom-font">
+                            エンジニア未経験の転職情報共有
+                        </x-nav-link>
+                    </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -45,7 +33,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('プロフィール編集') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -55,7 +43,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('ログアウト') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
@@ -89,9 +77,14 @@
                 <x-nav-link :href="route('post.mycomment')" :active="request()->routeIs('post.mycomment')">
                     コメントした投稿
                 </x-nav-link>
-                <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
-                    ユーザー一覧
+                <x-nav-link :href="route('post.myProfile')" :active="request()->routeIs('post.myProfile')">
+                    プロフィール
                 </x-nav-link>
+                @can('admin')
+                    <x-nav-link :href="route('profile.index')" :active="request()->routeIs('profile.index')">
+                        ユーザー一覧
+                    </x-nav-link>
+                @endcan
             </div>
 
 
@@ -104,7 +97,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('プロフィール編集') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->
@@ -114,7 +107,7 @@
                     <x-responsive-nav-link :href="route('logout')"
                             onclick="event.preventDefault();
                                         this.closest('form').submit();">
-                        {{ __('Log Out') }}
+                        {{ __('ログアウト') }}
                     </x-responsive-nav-link>
                 </form>
             </div>

@@ -23,4 +23,9 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function favorited_by_users() {
+        return $this->belongsToMany(User::class, 'favorites', 'post_id', 'user_id');
+    }
+
+
 }

@@ -1,11 +1,11 @@
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+            {{ __('プロフィール画面') }}
         </h2>
 
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+            {{ __("アカウントの名前とメールアドレスを更新してください。") }}
         </p>
     </header>
 
@@ -13,18 +13,45 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
+            <x-input-label for="name" :value="__('名前')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
         <div>
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="lang" :value="__('学習している言語')" />
+            <x-text-input id="lang" name="lang" type="text" class="mt-1 block w-full" :value="old('lang', $user->lang)" autofocus autocomplete="lang" />
+            <x-input-error class="mt-2" :messages="$errors->get('lang')" />
+        </div>
+
+        <div>
+            <x-input-label for="bio" :value="__('自己紹介')" />
+            <textarea id="bio" name="bio" class="mt-1 block w-full" rows="4">{{ old('bio', $user->bio) }}</textarea>
+            <x-input-error class="mt-2" :messages="$errors->get('bio')" />
+        </div>
+
+        <div>
+            <x-input-label for="avatar" :value="__('プロフィール画像（任意・1MBまで）')" />
+            <div class="rounded-full w-36">
+                @if($user->avatar && $user->avatar != 'user_default.jpg')
+                    <img src="{{asset('/storage/avatar/'.$user->avatar)}}">
+                @elseif($user->github_avatar)
+                    <img src="{{$user->github_avatar}}">
+                @else
+                    <img src="{{asset('/storage/avatar/user_default.jpg')}}">
+                @endif
+            </div>
+            <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar')" />
+            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+        </div>
+
+        <div>
+            <x-input-label for="email" :value="__('メールアドレス')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
@@ -48,7 +75,7 @@
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>{{ __('更新する') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
                 <p

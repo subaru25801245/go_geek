@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
@@ -37,6 +38,19 @@ class ProfileController extends Controller
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+        }
+
+        if($request->validated('avatar')) {
+            // 古いアバター削除用コード
+            $user=User::find(auth()->user()->id);
+            if ($user->avatar!=='user_default.jpg') {
+                $oldavatar='public/avatar/'.$user->avatar;
+                Storage::delete($oldavatar);
+            }
+            $name=request()->file( 'avatar')->getClientOriginalName();
+            $avatar=date('Ymd_His').'_'.$name;
+            request()->file( 'avatar')->storeAs('public/avatar', $avatar);
+            $request->user()->avatar = $avatar;
         }
 
         $request->user()->save();

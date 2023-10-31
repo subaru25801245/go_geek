@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -24,6 +25,10 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function favorite_posts() {
+        return $this->belongsToMany(Post::class, 'favorites', 'user_id', 'post_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -32,7 +37,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'avatar',
         'password',
+        'bio',
+        'lang',
+        'github_avatar',
     ];
 
     /**
@@ -54,4 +63,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function socialAccounts(): HasMany
+    {
+        return $this->hasMany(SocialAccount::class);
+    }
 }
