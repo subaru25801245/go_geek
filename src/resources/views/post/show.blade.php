@@ -74,10 +74,10 @@
                             @endcan
                         </div>
                         <div>
-                            <p class="mt-4 text-gray-600 py-4 whitespace-pre-line">
+                            <p class="mt-4 text-gray-600 py-4 whitespace-pre-line break-words">
                                 <a href="{{$post->title}}" target="_blank" class="text-blue-500 hover:underline">{{$post->title}}</a>
                             </p>
-                            <p class="mt-4 text-gray-600 py-4 whitespace-pre-line">{{$post->body}}</p>
+                            <p class="mt-4 text-gray-600 py-4 whitespace-pre-line">{!! $post->body !!}</p>
                             @if($post->image)
                                 <img src="{{ asset('storage/images/'.$post->image)}}" class="mx-auto" style="height:300px;">
                             @endif

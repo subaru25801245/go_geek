@@ -29,7 +29,7 @@
                 </div>
             @else
                 @foreach ($favorites as $favorite)
-                <a href="{{ route('post.show', ['post' => $favorite->id]) }}" style="display: block; text-decoration: none;">
+                <div class="post-container" data-url="{{ route('post.show', ['post' => $favorite->id]) }}">
                 <div class="mx-4 sm:p-8">
                             <div class="mt-4">
                                 <div class="bg-white w-full  rounded-2xl px-10 pt-2 pb-8 shadow-lg hover:shadow-2xl transition duration-500">
@@ -44,10 +44,27 @@
                                                     <img src="{{asset('/storage/avatar/user_default.jpg')}}" class="object-cover w-full h-full">
                                                 @endif
                                             </div>
+                                            @if(auth()->user() && auth()->user()->favorite_posts->contains($favorite->id))
+                                                <form action="{{ route('favorites.destroy', $favorite) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-red-500 hover:underline">
+                                                        お気に入りから削除
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('favorites.store', $post) }}" method="post">
+                                                    @csrf
+                                                    <button type="submit" class="text-blue-500 hover:underline">
+                                                        お気に入りに登録
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </div>
                                         <hr class="w-full">
-                                        <p class="mt-4 text-gray-600 py-4">{{$favorite->title}}</p>
-                                        <p class="mt-4 text-gray-600 py-4">{{Str::limit($favorite->body, 100, '...')}}</p>
+                                        <p><a href="{{ $favorite->title }}" class="mt-4 text-blue-600 hover:underline py-4 whitespace-pre-line break-words block focus:outline-none focus:ring focus:border-blue-300"
+                                              tabindex="0">{{$favorite->title}}</a> </p>
+                                        <p class="mt-4 text-gray-600 py-4 whitespace-pre-line break-words">{!! $favorite->body !!}</p>
 
                                         @if($favorite->og_title)
                                             <p class="mt-4 text-gray-600 py-4">{{$favorite->og_title}}</p>
@@ -73,7 +90,7 @@
                                 </div>
                             </div>
                         </div>
-                    </a>
+                </div>
                 @endforeach
             @endif
                 <div class="mt-3">

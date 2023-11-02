@@ -30,6 +30,16 @@ class FavoriteController extends Controller
     public function index()
     {
         $favorites = Auth::user()->favorite_posts()->paginate(5);
+
+        foreach ($favorites as $favorite) {
+            $favorite->body = $this->linkifyHashtags($favorite->body);
+        }
         return view('post.favorites', compact('favorites'));
+    }
+
+    protected function linkifyHashtags($text)
+    {
+        $pattern = '/#([\w\x{3040}-\x{309F}\x{30A0}-\x{30FF}\x{FF00}-\x{FFEF}\x{4E00}-\x{9FAF}]+)/u';
+        return preg_replace($pattern, '<a href="/post/hashtags/$1" class="hashtag">#$1</a>', $text);
     }
 }

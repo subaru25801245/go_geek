@@ -44,5 +44,5 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
         return $query->where('name', $name);
     }
 
-    // その他の便利なメソッド、スコープ、アクセサなど...
+
 }

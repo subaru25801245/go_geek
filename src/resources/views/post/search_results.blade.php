@@ -26,7 +26,7 @@
                 </div>
             @else
                 @foreach ($posts as $post)
-                    <a href="{{route('post.show', $post)}}" style="display: block; text-decoration: none;">
+                    <div class="post-container" data-url="{{route('post.show', $post)}}">
                     <div class="mx-4 sm:p-8">
                         <div class="mt-4">
                             <div class="bg-white w-full rounded-2xl px-10 pt-2 pb-8 shadow-lg hover:shadow-2xl transition duration-500">
@@ -44,7 +44,7 @@
                                     </div>
                                     <hr class="w-full">
                                     <p class="mt-4 text-gray-600 py-4">{{$post->title}}</p>
-                                    <p class="mt-4 text-gray-600 py-4">{{Str::limit($post->body, 100, '...')}}</p>
+                                    <p class="mt-4 text-gray-600 py-4">{!! $post->body !!}</p>
 
                                     @if($post->og_title)
                                         <p class="mt-4 text-gray-600 py-4">{{$post->og_title}}</p>
@@ -70,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    </a>
+                    </div>
                 @endforeach
             @endif
                 <div class="mt-3">

@@ -22,8 +22,14 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->paginate(5);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(10);
         $user=auth()->user();
+
+        foreach ($posts as $post) {
+            $post->body = $this->linkifyHashtags($post->body);
+            $post->hashtags = $this->extractHashtags($post->body);
+        }
+
         return view('post.index', compact('posts', 'user'));
     }
 
@@ -108,6 +114,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $post->body = $this->linkifyHashtags($post->body);
+
         return view('post.show', compact('post'));
     }
 
@@ -166,7 +174,7 @@ class PostController extends Controller
 
         $post->save();
 
-        preg_match_all('/#([a-zA-Z0-9_]+)/', $post->body, $matches);
+        preg_match_all('/#([\p{L}\p{N}_]+)/u', $post->body, $matches);
         $tags = $matches[1];
 
         // 抽出したハッシュタグをデータベースに保存
@@ -196,12 +204,22 @@ class PostController extends Controller
 
         $user=auth()->user()->id;
         $posts=Post::where('user_id', $user)->orderBy('created_at', 'desc')->paginate(5);
+
+        foreach ($posts as $post) {
+            $post->body = $this->linkifyHashtags($post->body);
+        }
+
         return view('post.mypost', compact('posts', 'user'));
     }
 
     public function mycomment() {
         $user=auth()->user()->id;
-        $comments=Comment::where('user_id', $user)->orderBy('created_at', 'desc')->paginate(5);
+        $comments=Comment::where('user_id', $user)->orderBy('created_at', 'desc')->get();
+
+        foreach ($comments as $comment) {
+            $comment->body = $this->linkifyHashtags($comment->body);
+        }
+
         return view('post.mycomment', compact('comments'));
     }
 
@@ -218,8 +236,13 @@ class PostController extends Controller
         $query = $request->input('query');
         $posts = Post::where('og_title', 'like', "%$query%")
             ->orWhere('og_description', 'like', "%$query%")
+            ->orWhere('body', 'like', "%$query%")
             ->orderBy('created_at', 'desc')
             ->paginate(10);
+
+        foreach ($posts as $post) {
+            $post->body = $this->linkifyHashtags($post->body);
+        }
 
         return view('post.search_results', compact('posts'));
     }
@@ -229,5 +252,38 @@ class PostController extends Controller
         return view('post.info');
     }
 
+    public function filterByHashtag($hashtagName)
+    {
+
+        // 2. 該当するハッシュタグをデータベースから検索
+        $hashtag = Hashtag::where('name', $hashtagName)->first();
+
+        // ハッシュタグが存在しない場合、エラーメッセージとともに一覧ページにリダイレクト
+        if (!$hashtag) {
+            return redirect()->route('post.index')->with('error', '該当するハッシュタグは存在しません。');
+        }
+
+        // 3. ハッシュタグに関連する投稿を取得
+        $posts = $hashtag->posts()->orderBy('created_at', 'desc')->paginate(10);
+
+        foreach ($posts as $post) {
+            $post->body = $this->linkifyHashtags($post->body);
+        }
+
+        // 4. 結果をビューに渡して表示
+        return view('post.hashtag', compact('posts'));
+    }
+
+    protected function linkifyHashtags($text)
+    {
+        $pattern = '/#([\w\x{3040}-\x{309F}\x{30A0}-\x{30FF}\x{FF00}-\x{FFEF}\x{4E00}-\x{9FAF}]+)/u';
+        return preg_replace($pattern, '<a href="/post/hashtags/$1" class="hashtag">#$1</a>', $text);
+    }
+
+    protected function extractHashtags($text) {
+        $pattern = '/#([\w\x{3040}-\x{309F}\x{30A0}-\x{30FF}\x{FF00}-\x{FFEF}\x{4E00}-\x{9FAF}]+)/u';
+        preg_match_all($pattern, $text, $matches);
+        return $matches[1]; // マッチしたハッシュタグの配列を返します
+    }
 
 }

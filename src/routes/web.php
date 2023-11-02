@@ -46,6 +46,7 @@ Route::post('/favorites/{post}', [FavoriteController::class, 'store'])->name('fa
 Route::delete('/favorites/{post}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
 Route::get('/post/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
 
+Route::get('/post/hashtags/{hashtag}', [PostController::class, 'filterByHashtag'])->name('post.hashtag');
 
 Route::resource('post', PostController::class);
 
