@@ -1,4 +1,4 @@
-# docker-laravel 🐳
+# docker-laravel 🐳 - go_geek
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/35098175/145682384-0f531ede-96e0-44c3-a35e-32494bd9af42.png" alt="docker-laravel">
@@ -44,6 +44,30 @@ $ make install
 ```
 
 http://localhost
+
+
+## Features
+
+This Laravel application includes several key features that enhance the user experience and developer workflow:
+
+### Open Graph Data Utilization
+
+- **Web Information Collection & Display**: Leveraging Open Graph protocol, the application can collect essential metadata from web pages and display it within the app. This enhances content sharing and visibility on social media platforms.
+
+### Social Login via GitHub
+
+- **GitHub Authentication**: Implementing OAuth, users can easily sign in with their GitHub accounts, streamlining the login process and improving security.
+
+### Favorites Functionality
+
+- **User Favorites**: Users can mark articles, posts, or any content as favorites, allowing them to quickly access their preferred content at any time.
+
+### Hashtagging
+
+- **Dynamic Hashtagging**: The application supports hashtag functionality, enabling users to tag and search content effectively, thereby improving the discoverability of the content.
+
+Remember to tailor the features to reflect the actual functionality and benefits of your application accurately.
+
 
 ## Tips
 

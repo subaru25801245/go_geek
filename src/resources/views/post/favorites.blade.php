@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                投稿した記事
+                お気に入り一覧
             </h2>
             <!-- Search Form -->
             <div class="flex items-center space-x-0">

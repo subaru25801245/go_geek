@@ -196,6 +196,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->comments()->delete();
+        $post->hashtags()->delete();
         $post->delete();
         return redirect()->route('post.index')->with('message', '投稿を削除しました');
     }
@@ -255,7 +256,7 @@ class PostController extends Controller
     public function filterByHashtag($hashtagName)
     {
 
-        // 2. 該当するハッシュタグをデータベースから検索
+        //該当するハッシュタグをデータベースから検索
         $hashtag = Hashtag::where('name', $hashtagName)->first();
 
         // ハッシュタグが存在しない場合、エラーメッセージとともに一覧ページにリダイレクト
@@ -263,14 +264,14 @@ class PostController extends Controller
             return redirect()->route('post.index')->with('error', '該当するハッシュタグは存在しません。');
         }
 
-        // 3. ハッシュタグに関連する投稿を取得
+        // ハッシュタグに関連する投稿を取得
         $posts = $hashtag->posts()->orderBy('created_at', 'desc')->paginate(10);
 
         foreach ($posts as $post) {
             $post->body = $this->linkifyHashtags($post->body);
         }
 
-        // 4. 結果をビューに渡して表示
+        // 結果をビューに渡して表示
         return view('post.hashtag', compact('posts'));
     }
 
