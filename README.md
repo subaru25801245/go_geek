@@ -13,6 +13,35 @@
 
 Build a simple laravel development environment with docker-compose. Compatible with Windows(WSL2), macOS(M1) and Linux.
 
+## Target Audience
+
+### End Users
+This software is designed for individuals and organizations seeking a robust and flexible web application framework. It is particularly beneficial for those looking to:
+
+- Develop modern, full-featured web applications.
+- Rapidly prototype new ideas.
+- Build RESTful APIs for mobile or single-page applications.
+
+### Developers
+Laravel and Docker enthusiasts will find this project an excellent starting point for crafting their applications. It is also suitable for:
+
+- Developers who prefer a Dockerized environment.
+- Teams that require a consistent development setup.
+- Contributors interested in advancing a Docker-integrated Laravel framework.
+
+By providing clear descriptions, potential users and developers can immediately identify if the project fits their needs or expertise.
+
+## Project Goals
+
+The primary goals of this software are to:
+
+- Provide a streamlined, Docker-based setup for Laravel development, making it accessible for developers across different platforms.
+- Ensure a high level of compatibility and ease-of-use for developers working with Laravel on Windows (WSL2), macOS (M1), and Linux.
+- Foster an environment where contributions can enhance the capabilities and performance of Laravel applications within Docker.
+
+Our vision is to simplify the development process, from initial setup to deployment, enabling developers to focus more on creating unique features and less on configuring their development environment.
+
+
 ## Usage
 
 ### Laravel install
