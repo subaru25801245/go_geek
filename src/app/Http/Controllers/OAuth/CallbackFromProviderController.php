@@ -86,6 +86,6 @@ final class CallbackFromProviderController extends Controller
         $this->auth->guard()->login($user);
         $request->session()->regenerate();
 
-        return redirect('/post');
+        return redirect('/post/info');
     }
 }
