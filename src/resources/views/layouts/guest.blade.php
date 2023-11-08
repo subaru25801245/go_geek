@@ -23,7 +23,7 @@
 <div class="font-sans text-gray-900 antialiased">
     <div class="w-full container mx-auto p-6">
         <div class="w-full flex items-center justify-between">
-            <a href="{{route('top')}}"><img src="{{asset('logo/logo_neko.jpg')}}"   style="max-height:70px;"></a>
+            <a href="{{route('top')}}"><img src="{{asset('logo/go_geek.png')}}"   style="max-height:100px;"></a>
 
         </div>
     <div class="w-full container mx-auto p-6">

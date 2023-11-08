@@ -11,10 +11,10 @@
 }
 
 a.hashtag {
-    color: #1DA1F2;         /* Twitterのブルー色 */
-    text-decoration: none;  /* アンダーラインを削除 */
-    background: #E8F5FE;    /* 薄いブルーの背景色 */
-    padding: 2px 5px;       /* 内側のスペースを付ける */
-    border-radius: 15px;    /* 角を丸める */
-    font-weight: bold;      /* 太字にする */
+    color: #1DA1F2;
+    text-decoration: none;
+    background: #E8F5FE;
+    padding: 2px 5px;
+    border-radius: 15px;
+    font-weight: bold;
 }

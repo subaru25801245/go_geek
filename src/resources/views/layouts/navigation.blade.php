@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('post.index') }}">
-                        <img src="{{asset('logo/logo_neko.jpg')}}" style="max-height:60px;">
+                        <img src="{{asset('logo/go_geek.png')}}" style="max-height:90px;">
                     </a>
                 </div>
             </div>
