@@ -39,22 +39,11 @@
             </div>
             <div class="mt-4"></div>
             <div>
-                @if(isset($posts) && !empty($posts))
-                    @php
-                        $allHashtags = [];
-                        foreach ($posts as $post) {
-                            $allHashtags = array_merge($allHashtags, $post->hashtags);
-                        }
-                        $allUniqueHashtags = array_unique($allHashtags);
-                    @endphp
-
-                    <div class="hashtag-container">
-                        @foreach($allUniqueHashtags as $hashtag)
-                            <a href="/post/hashtags/{{ $hashtag }}" class="hashtag">#{{ $hashtag }}</a>
-                        @endforeach
-                    </div>
-                @endif
-
+                <div class="hashtag-container">
+                    @foreach($hashtags as $hashtag)
+                        <a href="/post/hashtags/{{ $hashtag->name }}" class="hashtag">#{{ $hashtag->name }}</a>
+                    @endforeach
+                </div>
             </div>
 
             <h2 class="text-center text-2xl font-bold mt-8 mt-4 text-white shadow-md">

@@ -30,7 +30,9 @@ class PostController extends Controller
             $post->hashtags = $this->extractHashtags($post->body);
         }
 
-        return view('post.index', compact('posts', 'user'));
+        $hashtags = Hashtag::all();
+        
+        return view('post.index', compact('posts', 'user', 'hashtags'));
     }
 
     /**
