@@ -1,9 +1,7 @@
 FROM debian:11.6-slim  AS base
 
-# インタラクティブな設定を無効化
 ENV DEBIAN_FRONTEND noninteractive
 
-# パッケージインストール
 RUN apt-get update -y && apt-get install -y --no-install-recommends apt-utils
 
 RUN apt-get install -y \
@@ -20,7 +18,6 @@ RUN apt-get install -y \
 		procps \
 		sysstat
 
-# php8.2インストール
 RUN apt install -y apt-transport-https lsb-release ca-certificates
 RUN wget -O /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
 RUN echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
@@ -44,13 +41,11 @@ RUN apt-get install -y --no-install-recommends \
 RUN curl -sL https://deb.nodesource.com/setup_19.x | bash -
 RUN apt-get install -y nodejs
 
-# clear apt cache and remove unnecessary packages
 RUN apt-get autoclean && apt-get -y autoremove
 
 RUN curl -sS  https://getcomposer.org/installer | php && \
     chmod +x composer.phar && mv composer.phar /usr/local/bin/composer
 
-# 設定ファイルの設置
 RUN cp /etc/php/8.2/fpm/php.ini /etc/php/8.2/fpm/php.ini.default
 COPY ./infra/docker/php/php.ini /etc/php/8.2/fpm/php.ini
 RUN cp /etc/php/8.2/fpm/php-fpm.conf /etc/php/8.2/fpm/php-fpm.conf.default
