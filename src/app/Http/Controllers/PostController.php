@@ -31,7 +31,7 @@ class PostController extends Controller
         }
 
         $hashtags = Hashtag::all();
-        
+
         return view('post.index', compact('posts', 'user', 'hashtags'));
     }
 
@@ -257,23 +257,18 @@ class PostController extends Controller
 
     public function filterByHashtag($hashtagName)
     {
-
-        //該当するハッシュタグをデータベースから検索
         $hashtag = Hashtag::where('name', $hashtagName)->first();
 
-        // ハッシュタグが存在しない場合、エラーメッセージとともに一覧ページにリダイレクト
         if (!$hashtag) {
             return redirect()->route('post.index')->with('error', '該当するハッシュタグは存在しません。');
         }
 
-        // ハッシュタグに関連する投稿を取得
         $posts = $hashtag->posts()->orderBy('created_at', 'desc')->paginate(10);
 
         foreach ($posts as $post) {
             $post->body = $this->linkifyHashtags($post->body);
         }
-
-        // 結果をビューに渡して表示
+        
         return view('post.hashtag', compact('posts'));
     }
 

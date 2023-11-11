@@ -1,11 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <!-- Flex container -->
         <div class="flex items-center justify-between">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 サイトご利用に関して
             </h2>
-            <!-- Search Form -->
             <div class="flex items-center space-x-0">
                 <form action="{{ route('post.search') }}" method="GET" class="flex items-center space-x-0 border rounded-md">
                     <input type="text" name="query" placeholder="投稿の検索" class="rounded-l-md px-2 py-1 h-8 focus:outline-none">
