@@ -50,7 +50,7 @@ class PostController extends Controller
     {
         $inputs = $request->validate([
             'title' => 'required|max:255',
-            'body' => 'required|max:2000',
+            'body' => 'required|max:3000',
             'image' => 'image|max:1024'
         ]);
 
@@ -137,7 +137,7 @@ class PostController extends Controller
     {
         $inputs=$request->validate([
             'title' => 'required|max:255',
-            'body' => 'required|max:1000',
+            'body' => 'required|max:3000',
             'image' => 'image|max:1024'
         ]);
 
@@ -268,7 +268,7 @@ class PostController extends Controller
         foreach ($posts as $post) {
             $post->body = $this->linkifyHashtags($post->body);
         }
-        
+
         return view('post.hashtag', compact('posts'));
     }
 
