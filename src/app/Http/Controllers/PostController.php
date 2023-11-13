@@ -272,6 +272,11 @@ class PostController extends Controller
         return view('post.hashtag', compact('posts'));
     }
 
+    public function report(Post $post){
+        //ビューファイルへのリダイレクトとビューファイルの作成をする(by 2023年11月13日)
+
+    }
+
     protected function linkifyHashtags($text)
     {
         $pattern = '/#([\w\x{3040}-\x{309F}\x{30A0}-\x{30FF}\x{FF00}-\x{FFEF}\x{4E00}-\x{9FAF}]+)/u';

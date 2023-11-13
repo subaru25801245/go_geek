@@ -41,6 +41,7 @@ Route::post('post/comment/store', [CommentController::class, 'store'])->name('co
 Route::get('post/mypost', [PostController::class, 'mypost'])->name('post.mypost');
 Route::get('post/mycomment', [PostController::class, 'mycomment'])->name('post.mycomment');
 Route::get('/post/info', [PostController::class, 'info'])->name('post.info');
+Route::get('/post/report', [PostController::class, 'report'])->name('post.report');
 
 Route::post('/favorites/{post}', [FavoriteController::class, 'store'])->name('favorites.store');
 Route::delete('/favorites/{post}', [FavoriteController::class, 'destroy'])->name('favorites.destroy');
