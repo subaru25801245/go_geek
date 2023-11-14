@@ -9,46 +9,44 @@
     <img src="https://img.shields.io/github/license/ucan-lab/docker-laravel" alt="License">
 </p>
 
-## Introduction
+## 初めに
 
-Build a simple laravel development environment with docker-compose. Compatible with Windows(WSL2), macOS(M1) and Linux.
+docker-composeでシンプルなlaravel開発環境を構築。Windows(WSL2)、macOS(M1)、Linuxに対応。
 
-## Target Audience
+## アプリの対象者
 
-### End Users
-This software is designed for individuals and organizations seeking a robust and flexible web application framework. It is particularly beneficial for those looking to:
+### エンドユーザー
+このソフトウェアは、堅牢で柔軟なウェブアプリケーションフレームワークを求める個人や組織向けに設計されています。特に以下の点を目指す方々に有益です：
 
-- Develop modern, full-featured web applications.
-- Rapidly prototype new ideas.
-- Build RESTful APIs for mobile or single-page applications.
+- 現代的でフル機能を備えたウェブアプリケーションの開発
+- 新しいアイデアの迅速なプロトタイピング
+- モバイルやシングルページアプリケーション向けのRESTful APIの構築
 
-### Developers
-Laravel and Docker enthusiasts will find this project an excellent starting point for crafting their applications. It is also suitable for:
+### 開発者向け
+LaravelおよびDockerの愛好家は、このプロジェクトをアプリケーション作成の優れた出発点として見つけるでしょう。また、以下にも適しています：
 
-- Developers who prefer a Dockerized environment.
-- Teams that require a consistent development setup.
-- Contributors interested in advancing a Docker-integrated Laravel framework.
+- Docker化された環境を好む開発者
+- 一貫した開発セットアップを必要とするチーム.
+- Docker統合Laravelフレームワークを進化させたいと考える貢献者
 
-By providing clear descriptions, potential users and developers can immediately identify if the project fits their needs or expertise.
+## プロジェクトの目標
 
-## Project Goals
+このソフトウェアの主な目標は以下の通りです：
 
-The primary goals of this software are to:
+- 異なるプラットフォームの開発者にアクセスしやすいように、DockerベースのLaravel開発セットアップを提供し、簡素化します
+- Windows（WSL2）、macOS（M1）、LinuxでLaravelを使用する開発者に対して、互換性の高さと使いやすさを保証します
+- Docker内のLaravelアプリケーションの機能とパフォーマンスを向上させる貢献が促進される環境を育成します
 
-- Provide a streamlined, Docker-based setup for Laravel development, making it accessible for developers across different platforms.
-- Ensure a high level of compatibility and ease-of-use for developers working with Laravel on Windows (WSL2), macOS (M1), and Linux.
-- Foster an environment where contributions can enhance the capabilities and performance of Laravel applications within Docker.
-
-Our vision is to simplify the development process, from initial setup to deployment, enabling developers to focus more on creating unique features and less on configuring their development environment.
+プロジェクトのビジョンは、開発プロセスを初期セットアップからデプロイメントまで簡素化し、開発者がユニークな機能の作成にもっと集中し、開発環境の構成にかける時間を減らすことを可能にすることです
 
 
-## Usage
+## 使用方法
 
-### Laravel install
+### Laravelのインストール
 
-1. Click [Use this template](https://github.com/ucan-lab/docker-laravel/generate)
-2. Git clone & change directory
-3. Execute the following command
+1. [こちらのテンプレートを使用します](https://github.com/ucan-lab/docker-laravel/generate)
+2. gitのクローンとディレクトリを変更
+3. 以下のコマンドを実行してください
 
 ```bash
 $ mkdir -p src
@@ -63,10 +61,10 @@ $ docker compose exec app php artisan migrate
 
 http://localhost
 
-### Laravel setup
+### Laravelのセットアップ
 
-1. Git clone & change directory
-2. Execute the following command
+1. gitのクローンとディレクトリを変更
+2. 以下のコマンドを実行してください
 
 ```bash
 $ make install
@@ -75,35 +73,30 @@ $ make install
 http://localhost
 
 
-## Features
-
-This Laravel application includes several key features that enhance the user experience and developer workflow:
+## 機能
 
 ### Open Graph Data Utilization
 
-- **Web Information Collection & Display**: Leveraging Open Graph protocol, the application can collect essential metadata from web pages and display it within the app. This enhances content sharing and visibility on social media platforms.
+- **ウェブ情報収集&表示**: Open Graphプロトコルを活用して、アプリケーションはウェブページから重要なメタデータを収集し、アプリ内で表示できます。これにより、ソーシャルメディアプラットフォーム上でのコンテンツ共有と視認性が向上します
 
-### Social Login via GitHub
+### GitHubでのソーシャルログイン
 
-- **GitHub Authentication**: Implementing OAuth, users can easily sign in with their GitHub accounts, streamlining the login process and improving security.
+- **GitHub認証**: OAuthを実装することにより、ユーザーは自分のGitHubアカウントで簡単にサインインでき、ログインプロセスを簡素化し、セキュリティを向上させます
 
-### Favorites Functionality
+### お気に入り機能
 
-- **User Favorites**: Users can mark articles, posts, or any content as favorites, allowing them to quickly access their preferred content at any time.
+- **ユーザーのお気に入り**: ユーザーは記事、投稿をお気に入りとしてマークでき、いつでも好みのコンテンツに迅速にアクセスすることが可能です
 
-### Hashtagging
+### ハッシュタグ機能
 
-- **Dynamic Hashtagging**: The application supports hashtag functionality, enabling users to tag and search content effectively, thereby improving the discoverability of the content.
+- **ダイナミックハッシュタグ**: このアプリケーションはハッシュタグ機能をサポートしており、ユーザーがコンテンツを効果的にタグ付けし、検索することを可能にし、その結果、コンテンツの発見性を向上させます
 
-Remember to tailor the features to reflect the actual functionality and benefits of your application accurately.
+## ヒント
 
+- [ファイルの作成方法](https://github.com/ucan-lab/docker-laravel/blob/main/Makefile).
+- [laravelのウィキペディア](https://github.com/ucan-lab/docker-laravel/wiki).
 
-## Tips
-
-- Read this [Makefile](https://github.com/ucan-lab/docker-laravel/blob/main/Makefile).
-- Read this [Wiki](https://github.com/ucan-lab/docker-laravel/wiki).
-
-## Container structures
+## コンテナの構造
 
 ```bash
 ├── app
@@ -111,23 +104,23 @@ Remember to tailor the features to reflect the actual functionality and benefits
 └── db
 ```
 
-### app container
+### アプリケーションコンテナ
 
 - Base image
   - [php](https://hub.docker.com/_/php):8.1-fpm-bullseye
   - [composer](https://hub.docker.com/_/composer):2.2
 
-### web container
+### ウェブコンテナ
 
 - Base image
   - [nginx](https://hub.docker.com/_/nginx):1.22
 
-### db container
+### データベースコンテナ
 
 - Base image
   - [mysql/mysql-server](https://hub.docker.com/r/mysql/mysql-server):8.0
 
-### mailhog container
+### メールホッグコンテナ
 
 - Base image
   - [mailhog/mailhog](https://hub.docker.com/r/mailhog/mailhog)
