@@ -17,5 +17,20 @@
 
     </x-slot>
 
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 custom-bg">
+        <div class="mx-4 sm:p-8">
+            <form method="post" action="{{route('post.update', $post)}}" enctype="multipart/form-data">
+                @csrf
+                @method('patch')
+                <div class="md:flex items-center mt-8">
+                    <div class="w-full flex flex-col">
+                        <label for="body" class="font-semibold leading-none mt-4">URL</label>
+                        <input type="text" name="title" class="w-auto py-2 border border-gray-300 rounded-md" id="title" value="{{old('title', $post->title)}}" placeholder="Enter Title">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 
 </x-app-layout>
