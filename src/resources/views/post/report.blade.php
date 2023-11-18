@@ -19,15 +19,30 @@
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 custom-bg">
         <div class="mx-4 sm:p-8">
-            <form method="post" action="{{route('post.update', $post)}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('post.store')}}" enctype="multipart/form-data">
                 @csrf
-                @method('patch')
                 <div class="md:flex items-center mt-8">
                     <div class="w-full flex flex-col">
-                        <label for="body" class="font-semibold leading-none mt-4">URL</label>
-                        <input type="text" name="title" class="w-auto py-2 border border-gray-300 rounded-md" id="title" value="{{old('title', $post->title)}}" placeholder="Enter Title">
+                        <label for="body" class="font-semibold leading-none mt-4">シェアしたいURL</label>
+                        <input type="text" name="title" class="w-auto py-2 placeholder-gray-300 border border-gray-300 rounded-md" value="{{old('title')}}" id="title" placeholder="URLを入力してください">
                     </div>
                 </div>
+
+                <div class="w-full flex flex-col">
+                    <label for="body" class="font-semibold leading-none mt-4">オススメポイントを入力してください</label>
+                    <textarea name="body" class="w-auto py-2 border border-gray-300 rounded-md" id="body" cols="30" rows="10">{{old('body')}}</textarea>
+                </div>
+
+                <div class="w-full flex flex-col">
+                    <label for="image" class="font-semibold leading-none mt-4">画像 </label>
+                    <div>
+                        <input id="image" type="file" name="image">
+                    </div>
+                </div>
+
+                <x-primary-button class="mt-4">
+                    送信する
+                </x-primary-button>
             </form>
         </div>
     </div>
