@@ -23,13 +23,13 @@
                 @csrf
                 <div class="md:flex items-center mt-8">
                     <div class="w-full flex flex-col">
-                        <label for="body" class="font-semibold leading-none mt-4">シェアしたいURL</label>
+                        <label for="body" class="font-semibold leading-none mt-4">問題のあるURL</label>
                         <input type="text" name="title" class="w-auto py-2 placeholder-gray-300 border border-gray-300 rounded-md" value="{{old('title')}}" id="title" placeholder="URLを入力してください">
                     </div>
                 </div>
 
                 <div class="w-full flex flex-col">
-                    <label for="body" class="font-semibold leading-none mt-4">オススメポイントを入力してください</label>
+                    <label for="body" class="font-semibold leading-none mt-4">不適切内容を記載してください</label>
                     <textarea name="body" class="w-auto py-2 border border-gray-300 rounded-md" id="body" cols="30" rows="10">{{old('body')}}</textarea>
                 </div>
 
