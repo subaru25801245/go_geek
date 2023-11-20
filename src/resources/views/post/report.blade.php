@@ -33,13 +33,6 @@
                     <textarea name="body" class="w-auto py-2 border border-gray-300 rounded-md" id="body" cols="30" rows="10">{{old('body')}}</textarea>
                 </div>
 
-                <div class="w-full flex flex-col">
-                    <label for="image" class="font-semibold leading-none mt-4">画像 </label>
-                    <div>
-                        <input id="image" type="file" name="image">
-                    </div>
-                </div>
-
                 <x-primary-button class="mt-4">
                     送信する
                 </x-primary-button>
