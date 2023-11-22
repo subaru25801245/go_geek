@@ -273,8 +273,7 @@ class PostController extends Controller
     }
 
     public function report(Post $post){
-        //ビューファイルへのリダイレクトとビューファイルの作成をする(by 2023年11月13日)
-
+        return view('post.report', compact('post'));
     }
 
     protected function linkifyHashtags($text)
