@@ -50,7 +50,7 @@ class PostController extends Controller
     {
         $inputs = $request->validate([
             'title' => 'required|max:255',
-            'body' => 'required|max:3000',
+            'body' => 'required|max:2000',
             'image' => 'image|max:1024'
         ]);
 
@@ -137,7 +137,7 @@ class PostController extends Controller
     {
         $inputs=$request->validate([
             'title' => 'required|max:255',
-            'body' => 'required|max:3000',
+            'body' => 'required|max:2000',
             'image' => 'image|max:1024'
         ]);
 
