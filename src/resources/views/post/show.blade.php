@@ -18,11 +18,9 @@
     </x-slot>
 
     <div class="max-w-full mx-auto flex">
-        <!-- Sidebar Section -->
         <div class="w-1/4 bg-gray-100 p-4 border-r">
             @include('components.side-menu')
         </div>
-        <!-- Main Content Section -->
         <div class="w-3/4 p-4 custom-bg">
             <div class="mx-4 sm:p-8">
                 <div class="px-10 mt-4">
