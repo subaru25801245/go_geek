@@ -4,7 +4,6 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 記事の詳細
             </h2>
-            <!-- Search Form -->
             <div class="flex items-center space-x-0">
                 <form action="{{ route('post.search') }}" method="GET" class="flex items-center space-x-0 border rounded-md">
                     <input type="text" name="query" placeholder="投稿の検索" class="rounded-l-md px-2 py-1 h-8 focus:outline-none">
