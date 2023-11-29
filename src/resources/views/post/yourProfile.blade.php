@@ -29,7 +29,7 @@
                 <h1 class="text-xl">{{ $user->name }}</h1>
             </div>
 
-            <!-- lang -->
+            
             @if($user->lang)
                 <div class="border p-4 rounded bg-white">
                     <div class="font-bold text-sm uppercase">学習している言語:</div>
